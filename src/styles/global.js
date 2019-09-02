@@ -26,11 +26,16 @@ export default createGlobalStyle`
   }
 
   table, th, td {
-    border: 1px solid #ddd;
+    border: 1px solid #aaa;
   }
 
-  th, td {
+  th {
     padding: 15px 30px;
+  }
+
+  td {
+    padding: 5px 30px;
+    color: #ccc;
   }
 
   .table-wrapper {

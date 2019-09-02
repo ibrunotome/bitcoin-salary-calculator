@@ -8,9 +8,9 @@ import { Container, SubmitButton } from './styles'
 import api from '~/services/api'
 
 const fiatOptions = [
-  { id: 'usd', title: 'Dolar' },
-  { id: 'brl', title: 'Reais' },
-  { id: 'eur', title: 'Euro' }
+  { id: 'usd', title: 'Dolar', prefix: '$' },
+  { id: 'brl', title: 'Reais', prefix: 'R$' },
+  { id: 'eur', title: 'Euro', prefix: '€' }
 ]
 
 const coins = [
@@ -65,7 +65,7 @@ export default function Main () {
     coin: 'bitcoin',
     symbol: 'BTC',
     fromLastDays: 30,
-    fiatValuePerHour: 80.00
+    fiatValuePerHour: 35.5
   }
 
   async function handleSubmit (data) {
@@ -83,7 +83,9 @@ export default function Main () {
     }))
 
     const response = (await Promise.all(promises)).map(item => ({
-      date: item.date,
+      date: item.date.replace(/-/g, '/'),
+      fiat: fiat.toUpperCase(),
+      prefix: fiatOptions.find(item => item.id === fiat).prefix,
       coin: coin,
       symbol: coins.find(item => item.id === coin).symbol,
       price: item.data.data.market_data.current_price[fiat].toFixed(2),
@@ -158,29 +160,29 @@ export default function Main () {
             <div className="scrollable">
               <table className="table table-striped">
                 <thead>
-                  <tr key="total-header">
-                    <th colSpan="3">Total</th>
+                  <tr key="total-header" bgcolor={'#7159c1'}>
+                    <th colSpan="3">Salário total do período</th>
                     <th>{total} {items[0].symbol}</th>
                   </tr>
                   <tr>
                     <th>Data</th>
-                    <th>Preço</th>
-                    <th>Horas</th>
-                    <th>Quantidade</th>
+                    <th>Preço Unidade</th>
+                    <th>Horas Trabalhadas</th>
+                    <th>Salário diário</th>
                   </tr>
                 </thead>
                 <tbody>
                   {items.map(item => (
                     <tr key={item.date}>
                       <td>{item.date}</td>
-                      <td>{item.price}</td>
+                      <td>{item.prefix}{item.price}</td>
                       <td>{item.hours}</td>
                       <td>{item.amount} {item.symbol}</td>
                     </tr>
                   ))}
-                  <tr key="total-footer">
-                    <td colSpan="3">Total</td>
-                    <td>{total} {items[0].symbol}</td>
+                  <tr key="total-footer" bgcolor={'#7159c1'}>
+                    <th colSpan="3">Salário total do período</th>
+                    <th>{total} {items[0].symbol}</th>
                   </tr>
                 </tbody>
               </table>
