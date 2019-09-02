@@ -87,7 +87,7 @@ export default function Main () {
       date: item.date,
       coin: coin,
       symbol: coins.find(item => item.id === coin).symbol,
-      price: item.data.data.market_data.current_price.brl.toFixed(2),
+      price: item.data.data.market_data.current_price[fiat].toFixed(2),
       hours: 8,
       amount: (8 * fiatValuePerHour / item.data.data.market_data.current_price[fiat]).toFixed(8)
     }))
