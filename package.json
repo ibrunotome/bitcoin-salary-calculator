@@ -2,7 +2,7 @@
   "name": "bitcoin-salary-calculator",
   "homepage": "https://ibrunotome.github.io/bitcoin-salary-calculator",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",

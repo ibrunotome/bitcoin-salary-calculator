@@ -118,9 +118,11 @@ export default function Main () {
          é:
 
           <Input
-            type="text"
+            type="number"
             name="fiatValuePerHour"
             placeholder="0.00"
+            min="0.00"
+            step="0.01"
           />
         </div>
 
@@ -187,7 +189,7 @@ export default function Main () {
       )}
 
       <a href="https://github.com/ibrunotome/bitcoin-salary-calculator" target="blank">
-        <img src={githubLogo} width={50} />
+        <img src={githubLogo} width={50} alt="GitHub Logo" />
       </a>
 
     </Container>
