@@ -13,7 +13,7 @@ const rotate = keyframes`
 
 export const Container = styled.div`
   min-height: 100vh;
-  margin-top: 30px;
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,6 +27,8 @@ export const Container = styled.div`
 
   h1 {
     max-width: 80%;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
   }
 
   form {

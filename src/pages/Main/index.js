@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 
-import { FaSpinner } from 'react-icons/fa'
+import { FaSpinner, FaBitcoin, FaGithub } from 'react-icons/fa'
 import { Form, Input, Select } from '@rocketseat/unform'
 import { format, subDays } from 'date-fns'
 
 import { Container, SubmitButton } from './styles'
 import api from '~/services/api'
-import githubLogo from '~/assets/github.svg'
 
 const fiatOptions = [
   { id: 'usd', title: 'Dolar' },
@@ -101,7 +100,9 @@ export default function Main () {
 
   return (
     <Container>
-      <h1>The Bitcoin Salary Calculator</h1>
+      <FaBitcoin color="#f2a900" size={64} />
+
+      <h1>bitcoin salary calculator</h1>
 
       <Form
         initialData={initialData}
@@ -189,7 +190,7 @@ export default function Main () {
       )}
 
       <a href="https://github.com/ibrunotome/bitcoin-salary-calculator" target="blank">
-        <img src={githubLogo} width={50} alt="GitHub Logo" />
+        <FaGithub color="#fff" size={64} />
       </a>
 
     </Container>
