@@ -4,7 +4,7 @@ import stars from '~/assets/stars.svg'
 
 export default createGlobalStyle`
   body {
-    background: rgb(25, 24, 31) url(${stars}) no-repeat;
+    background: rgb(25, 24, 31) url(${stars}) fixed no-repeat;
     color: white;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

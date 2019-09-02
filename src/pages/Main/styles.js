@@ -12,7 +12,7 @@ const rotate = keyframes`
 `
 
 export const Container = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
@@ -20,9 +20,9 @@ export const Container = styled.div`
   align-items: center;
   text-align: center;
 
-  background: url(${background}), linear-gradient(to top, rgb(25, 24, 31), transparent);
+  background: url(${background}) fixed, linear-gradient(to top, rgb(25, 24, 31), transparent);
   background-size: contain;
-  background-position: center 70%;
+  background-position: center 100%;
   background-repeat: no-repeat;
 
   form {
@@ -58,10 +58,24 @@ export const Container = styled.div`
       }
     }
   }
+
+  table {
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+
+  th, td {
+    padding: 15px 30px;
+  }
 `
 
 export const SubmitButton = styled.button.attrs(props => ({
   type: 'submit',
+  loading: props.loading,
   disabled: props.loading
 }))`
   cursor: pointer;
@@ -72,6 +86,7 @@ export const SubmitButton = styled.button.attrs(props => ({
   padding: 15px 30px;
   border-radius: 4px;
   font-size: 18px;
+  margin-bottom: 30px;
 
   &:hover {
     background: ${darken(0.05, '#7159c1')}

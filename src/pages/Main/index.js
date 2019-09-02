@@ -1,97 +1,179 @@
-import React from 'react'
-import { Form, Input } from '@rocketseat/unform'
+import React, { useState } from 'react'
+
+import { FaSpinner } from 'react-icons/fa'
+import { Form, Input, Select } from '@rocketseat/unform'
+import { format, subDays } from 'date-fns'
+
 import { Container, SubmitButton } from './styles'
+import api from '~/services/api'
+
+const fiatOptions = [
+  { id: 'usd', title: 'Dolar' },
+  { id: 'brl', title: 'Reais' },
+  { id: 'eur', title: 'Euro' }
+]
+
+const coins = [
+  { id: 'bitcoin', title: 'Bitcoin', symbol: 'BTC' },
+  { id: 'bitcoin-cash', title: 'Bitcoin Cash', symbol: 'BCHABC' },
+  { id: 'litecoin', title: 'Litecoin', symbol: 'LTC' },
+  { id: 'ethereum', title: 'Ethereum', symbol: 'ETH' },
+  { id: 'nano', title: 'Nano', symbol: 'NANO' }
+]
+
+const days = [
+  { id: 31, title: '31 dias' },
+  { id: 30, title: '30 dias' },
+  { id: 29, title: '29 dias' },
+  { id: 28, title: '28 dias' },
+  { id: 27, title: '27 dias' },
+  { id: 26, title: '26 dias' },
+  { id: 25, title: '25 dias' },
+  { id: 24, title: '24 dias' },
+  { id: 23, title: '23 dias' },
+  { id: 22, title: '22 dias' },
+  { id: 21, title: '21 dias' },
+  { id: 20, title: '20 dias' },
+  { id: 19, title: '19 dias' },
+  { id: 18, title: '18 dias' },
+  { id: 17, title: '17 dias' },
+  { id: 16, title: '16 dias' },
+  { id: 15, title: '15 dias' },
+  { id: 14, title: '14 dias' },
+  { id: 13, title: '13 dias' },
+  { id: 12, title: '12 dias' },
+  { id: 11, title: '11 dias' },
+  { id: 10, title: '10 dias' },
+  { id: 9, title: '09 dias' },
+  { id: 8, title: '08 dias' },
+  { id: 7, title: '07 dias' },
+  { id: 6, title: '06 dias' },
+  { id: 5, title: '05 dias' },
+  { id: 4, title: '04 dias' },
+  { id: 3, title: '03 dias' },
+  { id: 2, title: '02 dias' },
+  { id: 1, title: '01 dia' }
+]
 
 export default function Main () {
+  const [items, setItems] = useState([])
+  const [total, setTotal] = useState(0.00000000)
+  const [loading, setLoading] = useState(0)
+
+  const initialData = {
+    fiat: 'brl',
+    coin: 'bitcoin',
+    symbol: 'BTC',
+    fromLastDays: 30,
+    fiatValuePerHour: 80.00
+  }
+
+  async function handleSubmit (data) {
+    setLoading(1)
+
+    const { fiat, coin, fromLastDays, fiatValuePerHour } = data
+    const dates = [...Array(31).keys()]
+      .reverse()
+      .slice(31 - fromLastDays)
+      .map(date => format(subDays(new Date(), date), 'dd-MM-yyyy'))
+
+    const promises = dates.map(async date => ({
+      date: date,
+      data: await api.get(`${coin}/history?date=${date}&localization=false`)
+    }))
+
+    const response = (await Promise.all(promises)).map(item => ({
+      date: item.date,
+      coin: coin,
+      symbol: coins.find(item => item.id === coin).symbol,
+      price: item.data.data.market_data.current_price.brl.toFixed(2),
+      hours: 8,
+      amount: (8 * fiatValuePerHour / item.data.data.market_data.current_price[fiat]).toFixed(8)
+    }))
+
+    const total = response.reduce((sum, { amount }) => sum + parseFloat(amount), 0).toFixed(8)
+
+    setItems(response)
+    setTotal(total)
+    setLoading(0)
+  }
+
   return (
     <Container>
       <h1>The Bitcoin Salary Calculator</h1>
 
-      <Form onSubmit={() => alert('WIP')}>
+      <Form
+        initialData={initialData}
+        onSubmit={handleSubmit}
+      >
         <div>
           O valor da minha hora em:
 
-          <select defaultValue="reais">
-            <option value="dollar">Dolar</option>
-            <option value="reais">Reais</option>
-            <option value="euro">Euro</option>
-          </select>
+          <Select
+            name="fiat"
+            options={fiatOptions}
+          />
 
          é:
 
           <Input
             type="text"
-            name="fiatValue"
+            name="fiatValuePerHour"
             placeholder="0.00"
           />
         </div>
 
         <div>
-          Calcular a conversão em:
+          Quero a conversão em:
 
-          <select>
-            <option value="bitcoin">Bitcoin</option>
-            <option value="bitcoin-cash">Bitcoin Cash</option>
-            <option value="ethereum">Ethereum</option>
-            <option value="litecoin">Litecoin</option>
-            <option value="nano">Nano</option>
-          </select>
+          <Select
+            name="coin"
+            options={coins}
+          />
 
           dos últimos:
 
-          <select defaultValue="30">
-            <option value="31">31 dias</option>
-            <option value="30">30 dias</option>
-            <option value="29">29 dias</option>
-            <option value="28">28 dias</option>
-            <option value="27">27 dias</option>
-            <option value="26">26 dias</option>
-            <option value="25">25 dias</option>
-            <option value="24">24 dias</option>
-            <option value="23">23 dias</option>
-            <option value="22">22 dias</option>
-            <option value="21">21 dias</option>
-            <option value="20">20 dias</option>
-            <option value="19">19 dias</option>
-            <option value="18">18 dias</option>
-            <option value="17">17 dias</option>
-            <option value="16">16 dias</option>
-            <option value="15">15 dias</option>
-            <option value="14">14 dias</option>
-            <option value="13">13 dias</option>
-            <option value="12">12 dias</option>
-            <option value="11">11 dias</option>
-            <option value="10">10 dias</option>
-            <option value="09">09 dias</option>
-            <option value="08">08 dias</option>
-            <option value="07">07 dias</option>
-            <option value="06">06 dias</option>
-            <option value="05">05 dias</option>
-            <option value="04">04 dias</option>
-            <option value="03">03 dias</option>
-            <option value="02">02 dias</option>
-            <option value="01">01 dia</option>
-          </select>
-
-          porém:
-
-          <select defaultValue="ignore-weekends">
-            <option value="without-ignore-weekends">sem ignorar finais de semana</option>
-            <option value="ignore-weekends">ignorar finais de semana</option>
-            <option value="ignore-only-sundays">ignorar apenas domingos</option>
-            <option value="ignore-only-saturdays">ignorar apenas sábados</option>
-          </select>
+          <Select
+            name="fromLastDays"
+            options={days}
+          />
         </div>
 
         <SubmitButton
-          disabled={false}
-          loading="true"
+          loading={loading}
           type="submit"
         >
-          Calcular
+          {loading ? <FaSpinner color="#fff" size={14} /> : 'Calcular' }
         </SubmitButton>
 
       </Form>
+
+      {items.length > 0 && (
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Preço</th>
+              <th>Horas</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map(item => (
+              <tr key={item.date}>
+                <td>{item.date}</td>
+                <td>{item.price}</td>
+                <td>{item.hours}</td>
+                <td>{item.amount} {item.symbol}</td>
+              </tr>
+            ))}
+            <tr key="total">
+              <td colSpan="3">Total</td>
+              <td>{total} {items[0].symbol}</td>
+            </tr>
+          </tbody>
+        </table>
+      )}
 
     </Container>
   )
