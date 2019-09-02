@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/bitcoin-salary-calculator/precache-manifest.5775de5450f35f672ace1a56d8f0f915.js"
+  "/bitcoin-salary-calculator/precache-manifest.0938308de629ccfbd15bd25673efeda2.js"
 );
 
 self.addEventListener('message', (event) => {
