@@ -6,6 +6,7 @@ import { format, subDays } from 'date-fns'
 
 import { Container, SubmitButton } from './styles'
 import api from '~/services/api'
+import githubLogo from '~/assets/github.svg'
 
 const fiatOptions = [
   { id: 'usd', title: 'Dolar' },
@@ -184,6 +185,10 @@ export default function Main () {
           </div>
         </div>
       )}
+
+      <a href="https://github.com/ibrunotome/bitcoin-salary-calculator" target="blank">
+        <img src={githubLogo} width={50} />
+      </a>
 
     </Container>
   )
