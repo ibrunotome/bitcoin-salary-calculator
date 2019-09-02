@@ -149,30 +149,40 @@ export default function Main () {
       </Form>
 
       {items.length > 0 && (
-        <table>
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Preço</th>
-              <th>Horas</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map(item => (
-              <tr key={item.date}>
-                <td>{item.date}</td>
-                <td>{item.price}</td>
-                <td>{item.hours}</td>
-                <td>{item.amount} {item.symbol}</td>
-              </tr>
-            ))}
-            <tr key="total">
-              <td colSpan="3">Total</td>
-              <td>{total} {items[0].symbol}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="container-fluid">
+          <div className="table-wrapper">
+            <div className="scrollable">
+              <table className="table table-striped">
+                <thead>
+                  <tr key="total-header">
+                    <th colSpan="3">Total</th>
+                    <th>{total} {items[0].symbol}</th>
+                  </tr>
+                  <tr>
+                    <th>Data</th>
+                    <th>Preço</th>
+                    <th>Horas</th>
+                    <th>Quantidade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {items.map(item => (
+                    <tr key={item.date}>
+                      <td>{item.date}</td>
+                      <td>{item.price}</td>
+                      <td>{item.hours}</td>
+                      <td>{item.amount} {item.symbol}</td>
+                    </tr>
+                  ))}
+                  <tr key="total-footer">
+                    <td colSpan="3">Total</td>
+                    <td>{total} {items[0].symbol}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       )}
 
     </Container>

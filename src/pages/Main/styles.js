@@ -25,6 +25,10 @@ export const Container = styled.div`
   background-position: center 100%;
   background-repeat: no-repeat;
 
+  h1 {
+    max-width: 80%;
+  }
+
   form {
 
     div {
@@ -57,19 +61,6 @@ export const Container = styled.div`
         margin-bottom: 10px;
       }
     }
-  }
-
-  table {
-    border-collapse: collapse;
-    margin-bottom: 30px;
-  }
-
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-
-  th, td {
-    padding: 15px 30px;
   }
 `
 
