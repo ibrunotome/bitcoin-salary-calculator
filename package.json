@@ -1,14 +1,17 @@
 {
   "name": "bitcoin-salary-calculator",
+  "homepage": "https://ibrunotome.github.io/bitcoin-salary-calculator",
   "version": "0.1.0",
-  "private": false,
+  "private": true,
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "lint": "eslint src",
-    "lint:fix": "eslint --fix src"
+    "lint:fix": "eslint --fix src",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "husky": {
     "hooks": {
@@ -55,6 +58,7 @@
     "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-react-hooks": "^1.6.1",
     "eslint-plugin-standard": "^4.0.0",
+    "gh-pages": "^2.1.1",
     "husky": "^3.0.4",
     "react-app-rewired": "^2.1.3"
   },
