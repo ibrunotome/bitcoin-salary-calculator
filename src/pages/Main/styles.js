@@ -35,7 +35,6 @@ export const Container = styled.div`
 
     div {
       font-size: 22px;
-      letter-spacing: 1px;
       text-align: left;
 
       input {
@@ -62,6 +61,24 @@ export const Container = styled.div`
         font-size: 16px;
         margin-bottom: 10px;
       }
+    }
+  }
+
+  .donation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    img {
+      display: block;
+      margin-top: 10px;
+      max-width: 50%;
+    }
+
+    p {
+      font-size: 13px;
     }
   }
 `

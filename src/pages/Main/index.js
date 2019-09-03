@@ -188,8 +188,8 @@ export default function Main () {
           </div>
         </div>
 
-        <div>
-          <p>Foi útil?</p>
+        <div className="donation">
+          <strong>Foi útil?</strong>
           <img src={address} />
           <p>3FBtaV7ekmKMxq9pDPUqnxwLB5V48DayVx</p>
         </div>
