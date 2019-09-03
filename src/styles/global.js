@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
 
 import stars from '~/assets/stars.svg'
+import 'react-perfect-scrollbar/dist/css/styles.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Ubuntu:700i&display=swap');
