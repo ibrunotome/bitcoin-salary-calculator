@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3c8638696f7bb6c0515ef42c8b1ead49",
+    "revision": "7bd2ecef1158fb73b7fe8c0bcc951f1f",
     "url": "/bitcoin-salary-calculator/index.html"
   },
   {
