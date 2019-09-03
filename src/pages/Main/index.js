@@ -11,6 +11,8 @@ import { fiatOptions, coins, ignoreOptions, hoursPerDay, days } from '~/config/F
 
 export default function Main () {
   const [items, setItems] = useState([])
+  const [start, setStart] = useState('')
+  const [end, setEnd] = useState('')
   const [total, setTotal] = useState(0.00000000)
   const [loading, setLoading] = useState(0)
 
@@ -73,6 +75,8 @@ export default function Main () {
 
     toast.success('Calculado com sucesso')
 
+    setStart(response[0].date)
+    setEnd(response.slice(-1).pop().date)
     setItems(response)
     setTotal(total)
     setLoading(0)
@@ -153,7 +157,7 @@ export default function Main () {
               <table className="table table-striped">
                 <thead>
                   <tr key="total-header" bgcolor={'#7159c1'}>
-                    <th colSpan="3">Salário total do período</th>
+                    <th colSpan="3">Salário total do período {start} até {end}</th>
                     <th>{total} {items[0].symbol}</th>
                   </tr>
                   <tr>
@@ -173,7 +177,7 @@ export default function Main () {
                     </tr>
                   ))}
                   <tr key="total-footer" bgcolor={'#7159c1'}>
-                    <th colSpan="3">Salário total do período</th>
+                    <th colSpan="3">Salário total do período {start} até {end}</th>
                     <th>{total} {items[0].symbol}</th>
                   </tr>
                 </tbody>
