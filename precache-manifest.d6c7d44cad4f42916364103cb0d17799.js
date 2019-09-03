@@ -1,15 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a77f230c30dae0c3016591b4ef59e48f",
+    "revision": "24f5b5e236a1aa9edecc2173844d78a0",
     "url": "/bitcoin-salary-calculator/index.html"
   },
   {
-    "revision": "89c31a6afa6b4d5237b3",
-    "url": "/bitcoin-salary-calculator/static/js/2.156a144f.chunk.js"
+    "revision": "4b83bcc78f955f11d577",
+    "url": "/bitcoin-salary-calculator/static/css/2.4ebc1774.chunk.css"
   },
   {
-    "revision": "57d8ef7d664878a7a11b",
-    "url": "/bitcoin-salary-calculator/static/js/main.d34191fa.chunk.js"
+    "revision": "4b83bcc78f955f11d577",
+    "url": "/bitcoin-salary-calculator/static/js/2.5225b6a4.chunk.js"
+  },
+  {
+    "revision": "a19abd4e38fe33c523d3",
+    "url": "/bitcoin-salary-calculator/static/js/main.b8cddd54.chunk.js"
   },
   {
     "revision": "cb23df6c69a347e95910",
