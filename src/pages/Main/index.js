@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { Container, SubmitButton } from './styles'
 import api from '~/services/api'
 import { fiatOptions, coins, ignoreOptions, hoursPerDay, days } from '~/config/FormOptions'
+import address from '~/assets/address.svg'
 
 export default function Main () {
   const [items, setItems] = useState([])
@@ -151,6 +152,7 @@ export default function Main () {
       </Form>
 
       {items.length > 0 && (
+        <>
         <div className="container-fluid">
           <div className="table-wrapper">
             <div className="scrollable">
@@ -185,6 +187,13 @@ export default function Main () {
             </div>
           </div>
         </div>
+
+        <div>
+          <p>Foi útil?</p>
+          <img src={address} />
+          <p>3FBtaV7ekmKMxq9pDPUqnxwLB5V48DayVx</p>
+        </div>
+        </>
       )}
 
       <a href="https://github.com/ibrunotome/bitcoin-salary-calculator" target="blank">
