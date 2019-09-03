@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.js": "/bitcoin-salary-calculator/static/js/main.42682c78.chunk.js",
-    "main.js.map": "/bitcoin-salary-calculator/static/js/main.42682c78.chunk.js.map",
+    "main.js": "/bitcoin-salary-calculator/static/js/main.4e380d62.chunk.js",
+    "main.js.map": "/bitcoin-salary-calculator/static/js/main.4e380d62.chunk.js.map",
     "runtime~main.js": "/bitcoin-salary-calculator/static/js/runtime~main.ed093db0.js",
     "runtime~main.js.map": "/bitcoin-salary-calculator/static/js/runtime~main.ed093db0.js.map",
     "static/css/2.4ebc1774.chunk.css": "/bitcoin-salary-calculator/static/css/2.4ebc1774.chunk.css",
-    "static/js/2.9059a29e.chunk.js": "/bitcoin-salary-calculator/static/js/2.9059a29e.chunk.js",
-    "static/js/2.9059a29e.chunk.js.map": "/bitcoin-salary-calculator/static/js/2.9059a29e.chunk.js.map",
+    "static/js/2.0c2f2a99.chunk.js": "/bitcoin-salary-calculator/static/js/2.0c2f2a99.chunk.js",
+    "static/js/2.0c2f2a99.chunk.js.map": "/bitcoin-salary-calculator/static/js/2.0c2f2a99.chunk.js.map",
     "index.html": "/bitcoin-salary-calculator/index.html",
-    "precache-manifest.e807faba0bf1f25c6370def1b9d13b19.js": "/bitcoin-salary-calculator/precache-manifest.e807faba0bf1f25c6370def1b9d13b19.js",
+    "precache-manifest.d7b1a6509e2a395b4db50bd39d37ebe4.js": "/bitcoin-salary-calculator/precache-manifest.d7b1a6509e2a395b4db50bd39d37ebe4.js",
     "service-worker.js": "/bitcoin-salary-calculator/service-worker.js",
     "static/css/2.4ebc1774.chunk.css.map": "/bitcoin-salary-calculator/static/css/2.4ebc1774.chunk.css.map",
+    "static/media/address.svg": "/bitcoin-salary-calculator/static/media/address.13f37428.svg",
     "static/media/mountains.svg": "/bitcoin-salary-calculator/static/media/mountains.957f1e80.svg",
     "static/media/stars.svg": "/bitcoin-salary-calculator/static/media/stars.b004c9dc.svg"
   }

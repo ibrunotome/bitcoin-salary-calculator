@@ -1,23 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9aca18002ad420e27c00466bc27a1982",
+    "revision": "69d06565cda4989dcf23e1abc5399234",
     "url": "/bitcoin-salary-calculator/index.html"
   },
   {
-    "revision": "2ace52a5b91a3cc94fad",
+    "revision": "fb141a189adfaf17a284",
     "url": "/bitcoin-salary-calculator/static/css/2.4ebc1774.chunk.css"
   },
   {
-    "revision": "2ace52a5b91a3cc94fad",
-    "url": "/bitcoin-salary-calculator/static/js/2.9059a29e.chunk.js"
+    "revision": "fb141a189adfaf17a284",
+    "url": "/bitcoin-salary-calculator/static/js/2.0c2f2a99.chunk.js"
   },
   {
-    "revision": "d21bcf77164c1401b7b2",
-    "url": "/bitcoin-salary-calculator/static/js/main.42682c78.chunk.js"
+    "revision": "0009db8afb2095626e21",
+    "url": "/bitcoin-salary-calculator/static/js/main.4e380d62.chunk.js"
   },
   {
     "revision": "cb23df6c69a347e95910",
     "url": "/bitcoin-salary-calculator/static/js/runtime~main.ed093db0.js"
+  },
+  {
+    "revision": "13f374287c161ba235e8f4ab6b80e9b1",
+    "url": "/bitcoin-salary-calculator/static/media/address.13f37428.svg"
   },
   {
     "revision": "957f1e80ee2d9232d48b76c230da1113",
