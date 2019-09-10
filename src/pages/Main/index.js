@@ -28,9 +28,9 @@ export default function Main () {
   }
 
   function getDates (fromLastDays, ignoreOption) {
-    return [...Array(31).keys()]
+    return [...Array(90).keys()]
       .reverse()
-      .slice(31 - fromLastDays)
+      .slice(90 - fromLastDays)
       .map(date => subDays(new Date(), date))
       .filter(date => {
         if (ignoreOption === 'ignore-weekends') {
