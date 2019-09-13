@@ -61,26 +61,37 @@ export default function Main () {
       data: await api.get(`${coin}/history?date=${date}&localization=false`)
     }))
 
-    const response = (await Promise.all(promises)).map(item => ({
-      date: item.date.replace(/-/g, '/'),
-      fiat: fiat.toUpperCase(),
-      prefix: fiatOptions.find(item => item.id === fiat).prefix,
-      coin: coin,
-      symbol: coins.find(item => item.id === coin).symbol,
-      price: item.data.data.market_data.current_price[fiat].toFixed(2),
-      hours: hoursPerDay,
-      amount: (hoursPerDay * fiatValuePerHour / item.data.data.market_data.current_price[fiat]).toFixed(8)
-    }))
+    try {
+      const response = (await Promise.all(promises)).map((item) => ({
+        date: item.date.replace(/-/g, '/'),
+        fiat: fiat.toUpperCase(),
+        prefix: fiatOptions.find(item => item.id === fiat).prefix,
+        coin: coin,
+        symbol: coins.find(item => item.id === coin).symbol,
+        price: item.data.data.market_data.current_price[fiat].toFixed(2),
+        hours: hoursPerDay,
+        amount: (hoursPerDay * fiatValuePerHour / item.data.data.market_data.current_price[fiat]).toFixed(8)
+      })).reverse().map((item, index, arr) => ({
+        ...item,
+        cumulativeAmount: arr.reduce(function (sum, record, currentIndex) {
+          return (currentIndex <= index) ? sum : sum + parseFloat(record.amount)
+        }, parseFloat(item.amount)).toFixed(8)
+      })).reverse()
 
-    const total = response.reduce((sum, { amount }) => sum + parseFloat(amount), 0).toFixed(8)
+      const total = response[response.length - 1].cumulativeAmount
 
-    toast.success('Calculado com sucesso')
+      toast.success('Calculado com sucesso')
 
-    setStart(response[0].date)
-    setEnd(response.slice(-1).pop().date)
-    setItems(response)
-    setTotal(total)
-    setLoading(0)
+      setStart(response[0].date)
+      setEnd(response.slice(-1).pop().date)
+      setItems(response)
+      setTotal(total)
+      setLoading(0)
+    } catch (error) {
+      toast.error('A Api responsável pelo histórico da cotação do bitcoin não respondeu corretamente 😔', {
+        autoClose: false
+      })
+    }
   }
 
   return (
@@ -160,13 +171,14 @@ export default function Main () {
                 <thead>
                   <tr key="total-header" bgcolor={'#7159c1'}>
                     <th colSpan="3">Salário total do período {start} até {end}</th>
-                    <th>{total} {items[0].symbol}</th>
+                    <th colSpan="2">{total} {items[0].symbol}</th>
                   </tr>
                   <tr>
                     <th>Data</th>
                     <th>Preço Unidade</th>
                     <th>Horas Trabalhadas</th>
                     <th>Salário diário</th>
+                    <th>acumulado</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -176,11 +188,12 @@ export default function Main () {
                       <td>{item.prefix}{item.price}</td>
                       <td>{item.hours}</td>
                       <td>{item.amount} {item.symbol}</td>
+                      <td>{item.cumulativeAmount} {item.symbol}</td>
                     </tr>
                   ))}
                   <tr key="total-footer" bgcolor={'#7159c1'}>
                     <th colSpan="3">Salário total do período {start} até {end}</th>
-                    <th>{total} {items[0].symbol}</th>
+                    <th colSpan="2">{total} {items[0].symbol}</th>
                   </tr>
                 </tbody>
               </table>
@@ -199,7 +212,6 @@ export default function Main () {
       <a href="https://github.com/ibrunotome/bitcoin-salary-calculator" target="blank">
         <FaGithub color="#fff" size={64} />
       </a>
-
     </Container>
   )
 }
