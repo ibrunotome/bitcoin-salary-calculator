@@ -68,9 +68,13 @@ export default function Main () {
         prefix: fiatOptions.find(item => item.id === fiat).prefix,
         coin: coin,
         symbol: coins.find(item => item.id === coin).symbol,
-        price: item.data.data.market_data.current_price[fiat].toFixed(2),
+        price: item.data.data.market_data !== undefined
+          ? item.data.data.market_data.current_price[fiat].toFixed(2)
+          : 0,
         hours: hoursPerDay,
-        amount: (hoursPerDay * fiatValuePerHour / item.data.data.market_data.current_price[fiat]).toFixed(8)
+        amount: item.data.data.market_data !== undefined
+          ? (hoursPerDay * fiatValuePerHour / item.data.data.market_data.current_price[fiat]).toFixed(8)
+          : 0
       })).reverse().map((item, index, arr) => ({
         ...item,
         cumulativeAmount: arr.reduce(function (sum, record, currentIndex) {
@@ -88,6 +92,7 @@ export default function Main () {
       setTotal(total)
       setLoading(0)
     } catch (error) {
+      console.log(error)
       toast.error('A Api responsável pelo histórico da cotação do bitcoin não respondeu corretamente 😔', {
         autoClose: false
       })
