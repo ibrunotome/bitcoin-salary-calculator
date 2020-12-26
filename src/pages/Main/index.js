@@ -24,7 +24,7 @@ export default function Main () {
     hoursPerDay: 8,
     ignoreOption: 'ignore-nothing',
     fromLastDays: 30,
-    fiatValuePerHour: 35.5
+    fiatValuePerHour: 120.0
   }
 
   function getDates (fromLastDays, ignoreOption) {
@@ -92,7 +92,6 @@ export default function Main () {
       setTotal(total)
       setLoading(0)
     } catch (error) {
-      console.log(error)
       toast.error('A Api responsável pelo histórico da cotação do bitcoin não respondeu corretamente 😔', {
         autoClose: false
       })
@@ -174,7 +173,7 @@ export default function Main () {
             <div className="scrollable">
               <table className="table table-striped">
                 <thead>
-                  <tr key="total-header" bgcolor={'#7159c1'}>
+                  <tr key="total-header" bgcolor={'#f2a900'}>
                     <th colSpan="3">Salário total do período {start} até {end}</th>
                     <th colSpan="2">{total} {items[0].symbol}</th>
                   </tr>
@@ -196,7 +195,7 @@ export default function Main () {
                       <td>{item.cumulativeAmount} {item.symbol}</td>
                     </tr>
                   ))}
-                  <tr key="total-footer" bgcolor={'#7159c1'}>
+                  <tr key="total-footer" bgcolor={'#f2a900'}>
                     <th colSpan="3">Salário total do período {start} até {end}</th>
                     <th colSpan="2">{total} {items[0].symbol}</th>
                   </tr>
@@ -208,8 +207,8 @@ export default function Main () {
 
         <div className="donation">
           <strong>Foi útil?</strong>
-          <img src={address} />
-          <p>3FBtaV7ekmKMxq9pDPUqnxwLB5V48DayVx</p>
+          <img src={address} alt="bc1q7jgyxau233dzfvs7epupnjmlsnyw8y3xz8xmjm" />
+          <p>bc1q7jgyxau233dzfvs7epupnjmlsnyw8y3xz8xmjm</p>
         </div>
         </>
       )}

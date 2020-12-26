@@ -89,7 +89,7 @@ export const SubmitButton = styled.button.attrs(props => ({
   disabled: props.loading
 }))`
   cursor: pointer;
-  background: #7159c1;
+  background: #f2a900;
   color: #fff;
   border: 0;
   margin: 20px 0;
@@ -99,7 +99,7 @@ export const SubmitButton = styled.button.attrs(props => ({
   margin-bottom: 30px;
 
   &:hover {
-    background: ${darken(0.05, '#7159c1')}
+    background: ${darken(0.05, '#f2a900')}
   }
 
   &[disabled] {

@@ -6,7 +6,6 @@ export const fiatOptions = [
 
 export const coins = [
   { id: 'bitcoin', title: 'Bitcoin', symbol: 'BTC' },
-  { id: 'bitcoin-cash', title: 'Bitcoin Cash', symbol: 'BCHABC' },
   { id: 'litecoin', title: 'Litecoin', symbol: 'LTC' },
   { id: 'ethereum', title: 'Ethereum', symbol: 'ETH' },
   { id: 'nano', title: 'Nano', symbol: 'NANO' }
@@ -36,7 +35,7 @@ export const hoursPerDay = [
   { id: 3, title: '3 horas por dia' },
   { id: 2, title: '2 horas por dia' },
   { id: 1, title: '1 hora por dia' }
-]
+].reverse()
 
 export const days = [...Array(90).keys()].map(day => ({
   id: day + 1,
